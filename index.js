@@ -44,17 +44,13 @@ require('./BADOL/loader')(commandsPath, eventsPath, CONFIG_PATH, NOPREFIX_SETTIN
     if (fs.existsSync(commandsPath)) {
         fs.readdirSync(commandsPath)
             .filter(f => f.endsWith(".js"))
-            .forEach(file => {
-                global.loadCommand(file.replace('.js', ''));
-            });
+            .forEach(file => global.loadCommand(file.replace('.js', '')));
     }
 
     if (fs.existsSync(eventsPath)) {
         fs.readdirSync(eventsPath)
             .filter(f => f.endsWith(".js"))
-            .forEach(file => {
-                global.loadEvent(file.replace('.js', ''));
-            });
+            .forEach(file => global.loadEvent(file.replace('.js', '')));
     }
 
     await global.reloadNoprefixSettings();
@@ -76,7 +72,6 @@ require('./BADOL/loader')(commandsPath, eventsPath, CONFIG_PATH, NOPREFIX_SETTIN
             const me = await bot.getMe();
 
             global.BOT_INSTANCES.push(bot);
-
             global.initializeBotCallbacks(bot);
             global.setupBotListeners(bot, bConf, AUTHOR_ID, cooldowns);
 
